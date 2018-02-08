@@ -1,0 +1,35 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+header{
+    overflow: hidden;
+    background-color: gold;
+}
+
+li a{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: red;
+}
+
+li{
+    display: inline-block;
+}
+
+body{
+	background-color: lightslategray;
+	text-decoration: none;
+}
+
+h1{
+	color: ghostwhite;
+	text-align: center;
+}

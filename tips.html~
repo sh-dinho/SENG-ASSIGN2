@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>FX1</title>
+</head>
+
+<body>
+
+<header>
+    <ul id="menu-list">
+        <li><a href="#index.html">Home</a></li>
+        <li><a href="#">Ranking</a></li>
+        <li><a href="#">Tips</a></li>
+        <li><a href="#">Leagues</a></li>
+    </ul>
+</header>
+
+<section>
+    <h1>Welcome to my world</h1>
+    <hr/>
+</section>
+
+<footer>
+	 
+</footer>
+
+</body>
+</html>
