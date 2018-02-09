@@ -7,52 +7,68 @@ function getStats(txt)
         nChars: nChars(txt),
         nWords: nWords(txt),
         nLines: nLines(txt),
-        nNonEmptyLines: 22,
+        nNonEmptyLines: nNonEmptyLines(txt),
         averageWordLength: 3.3,
-        maxLineLength: 33,
+        maxLineLength: maxLineLength(txt),
         palindromes: ["12321", "kayak", "mom"],
-        longestWords: ["xxxxxxxxx", "123444444"],
+        longestWords: longestWords(txt),
         mostFrequentWords: ["hello(7)", "world(1)"]
     };
 }
 
-function nChars(txt) {
+function nChars(txt) 
+{
 	//trim removes white spaces
-	var regex = /\n + \t/g;
-	return txt.replace(regex, "").trim().length;
+	var regex = /\n + \t/gm;
+	return txt.replace(regex, '').trim().length;
 }
 
-//Input : text {Array of characters /String}
- //       N {Size of the string}
-//Begin:
-    //words ← 0;
-    //For i ← 0 to N do
-        //If (text [i] == ' ', 't', 'n') then
-      //      word ← word + 1;
-    //    End if
-  //  End for
-//End
-
-function nWords(txt) {
-	words = 0;
-	n = txt.length;
-	var regex = /\t + \n + ' '/;
-	var broken = txt.split(regex);
-	 
-		for (i = 0; i < n; i++) {
-			if (txt[i] == null || txt[i] == '\t' || txt[i] == '\n') {
-				words++;
-			}
-		}
-		//return words;
-	return broken++;
+function nWords(txt) 
+{
+	//words = 0;
+	//n = txt.length;
+	var regex =/" "/gm;
+	return txt.trim().split(' ').length;
 }
 
-function nLines(txt) {
-	var regex = /\n/;
+function nLines(txt)
+{
+	var regex = /\n/gm;
 	return txt.split(regex).length;
 }
 
-function nNonEmptyLines(txt) {
+function nNonEmptyLines(txt)
+{
+	var regex = /.*\S.*/gm;
+	return txt.match(regex, '').length;
+}
+
+function maxLineLength(txt) 
+{
+	var max = 0;
+	var temp = txt[0].length;
 	
+	for (i = 1; i < txt.length; i++) 
+	{
+		if (txt[i].length > temp) 
+		{
+			max = i;
+			temp = txt[i].length;
+		}
+	}
+	return temp;
+}
+
+function longestWords(txt) 
+{
+	word = ' ';
+	let s = txt.split(' ');
+	for (i = 0; i < s.length; i++)
+	 {
+	 	if (s[i].length > word.length)
+	 	 {
+	 	 	word = s[i];
+	 	 }
+	 }
+	 return word;
 }
