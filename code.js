@@ -8,7 +8,7 @@ function getStats(txt)
         nWords: nWords(txt),
         nLines: nLines(txt),
         nNonEmptyLines: nNonEmptyLines(txt),
-        averageWordLength: 3.3,
+        averageWordLength: averageWordLength(txt),
         maxLineLength: maxLineLength(txt),
         palindromes: ["12321", "kayak", "mom"],
         longestWords: longestWords(txt),
@@ -72,3 +72,14 @@ function longestWords(txt)
 	 }
 	 return word;
 }
+
+function averageWordLength(txt)
+ {
+ 	sum = 0;
+ 	var word = txt.split(' '); 	
+ 	for (i = 0; i < word.length; i++) {
+	 	sum += word[i].length;
+	 }
+	 avg = (sum / word.length);
+	 return avg;
+ }
