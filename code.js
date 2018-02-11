@@ -19,16 +19,16 @@ function getStats(txt)
 function nChars(txt) 
 {
 	//trim removes white spaces
-	var regex = /\n + \t/gm;
-	return txt.replace(regex, '').trim().length;
+	//var regex = /\n /g;
+	return txt.length;
 }
 
 function nWords(txt) 
 {
 	//words = 0;
 	//n = txt.length;
-	var regex =/' '/gm;
-	return txt.trim().split(' ').length;
+	var regex =/\s+/gm;
+	return txt.trim().split(regex).length;
 }
 
 function nLines(txt)
@@ -77,7 +77,7 @@ function longestWords(txt)
 function averageWordLength(txt)
  {
  	var sum = 0;
- 	var word = txt.split(' '); 	
+ 	var word = txt.split(' ');
  	for (i = 0; i < word.length; i++) {
 	 	sum += word[i].length;
 	 }
