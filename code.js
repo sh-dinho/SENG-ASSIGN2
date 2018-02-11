@@ -10,9 +10,9 @@ function getStats(txt)
         nNonEmptyLines: nNonEmptyLines(txt),
         averageWordLength: averageWordLength(txt),
         maxLineLength: maxLineLength(txt),
-        palindromes: ["12321", "kayak", "mom"],
+        palindromes: palindromes(txt),
         longestWords: longestWords(txt),
-        mostFrequentWords: ["hello(7)", "world(1)"]
+        mostFrequentWords: mostFrequentWords(txt)
     };
 }
 
@@ -82,4 +82,15 @@ function averageWordLength(txt)
 	 }
 	 avg = (sum / word.length);
 	 return avg;
+ }
+ 
+ //https://www.quora.com/How-do-you-check-if-a-String-is-a-palindrome-in-JavaScript
+ function palindromes(txt)
+ {
+	return txt.split('').reverse().join(''); 
+ }
+ 
+ function mostFrequentWords(txt)
+ {
+	 
  }
