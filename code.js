@@ -27,7 +27,7 @@ function nWords(txt)
 {
 	//words = 0;
 	//n = txt.length;
-	var regex =/" "/gm;
+	var regex =/' '/gm;
 	return txt.trim().split(' ').length;
 }
 
@@ -47,13 +47,14 @@ function maxLineLength(txt)
 {
 	var max = 0;
 	var temp = txt[0].length;
-	
-	for (i = 1; i < txt.length; i++) 
+	var word = txt.split('\n');
+
+	for (i = 1; i < word.length; i++)
 	{
-		if (txt[i].length > temp) 
+		if (word[i].length > temp)
 		{
 			max = i;
-			temp = txt[i].length;
+			temp = word[i].length;
 		}
 	}
 	return temp;
@@ -61,8 +62,8 @@ function maxLineLength(txt)
 
 function longestWords(txt) 
 {
-	word = ' ';
-	let s = txt.split(' ');
+	var word = ' ';
+	var s = txt.split(' ');
 	for (i = 0; i < s.length; i++)
 	 {
 	 	if (s[i].length > word.length)
@@ -75,7 +76,7 @@ function longestWords(txt)
 
 function averageWordLength(txt)
  {
- 	sum = 0;
+ 	var sum = 0;
  	var word = txt.split(' '); 	
  	for (i = 0; i < word.length; i++) {
 	 	sum += word[i].length;
@@ -87,7 +88,16 @@ function averageWordLength(txt)
  //https://www.quora.com/How-do-you-check-if-a-String-is-a-palindrome-in-JavaScript
  function palindromes(txt)
  {
-	return txt.split('').reverse().join(''); 
+
+	if(txt == txt.split('').reverse().join('') && txt.length > 2)
+	{
+		return pal = true;
+	}
+	else
+	{
+		return pal = false;
+	}
+	return pal;
  }
  
  function mostFrequentWords(txt)
