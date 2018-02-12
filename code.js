@@ -3,6 +3,12 @@
 //
 function getStats(txt)
 {
+    var regex = /[\s+,.\n''\r\t+:]/;
+    var words = txt.split(regex)
+    .filter(function(x) {
+            return (x !== (undefined || null || ''))
+    });
+    
     return {
         nChars: nChars(txt),
         nWords: nWords(txt),
@@ -10,9 +16,9 @@ function getStats(txt)
         nNonEmptyLines: nNonEmptyLines(txt),
         averageWordLength: averageWordLength(txt),
         maxLineLength: maxLineLength(txt),
-        palindromes: palindromes(txt),
+        palindromes: getPalindromes(words),
         longestWords: longestWords(txt),
-        mostFrequentWords: mostFrequentWords(txt)
+        mostFrequentWords: getFrequency(words,10)
     };
 }
 
@@ -39,7 +45,7 @@ function nLines(txt)
 
 function nNonEmptyLines(txt)
 {
-	var regex = /.*\S.*/gm;
+	var regex = /.*\s.*/gm;
 	return txt.match(regex, '').length;
 }
 
@@ -71,7 +77,7 @@ function longestWords(txt)
 	 	 	word = s[i];
 	 	 }
 	 }
-	 return word;
+    return word;
 }
 
 function averageWordLength(txt)
@@ -85,8 +91,11 @@ function averageWordLength(txt)
 //	 avg = (sum / word.length);
      //	 return avg;
      var sum = 0;
-     var regex = /[\s+,.\n''\r\t]+/;
-     var words = txt.split(regex);
+     var regex = /[\s+,.\n''\r\t+:]/;
+     var words = txt.split(regex)
+                    .filter(function(x) {
+                       return (x !== (undefined || null || ''))
+                    });
     
     for (i = 0; i < words.length; i++) {
    		sum += words[i].length;
@@ -95,22 +104,44 @@ function averageWordLength(txt)
     return avg;
 
  }
- 
- //https://www.quora.com/How-do-you-check-if-a-String-is-a-palindrome-in-JavaScript
- function palindromes(txt)
- {
-	if(txt == txt.split('').reverse().join('') && txt.length > 2)
-	{
-		return pal = true;
-	}
-	else
-	{
-		return pal = false;
-	}
-	return pal;
- }
- 
- function mostFrequentWords(txt)
- {
-	 
- }
+
+function isPalindrome(str) {
+    
+    if (str.length < 2) {
+        return false;
+    }
+    
+    var re = /[\W_]/g;
+    var lowRegStr = str.toLowerCase().replace(re, '');
+    var reverseStr = lowRegStr.split('').reverse().join('');
+    return reverseStr === lowRegStr;
+}
+
+function getPalindromes(stringArray) {
+    
+    var pals = [];
+    for (var i = 0; i < stringArray.length; i++) {
+        if (isPalindrome(stringArray[i])) {
+            pals.push(stringArray[i]);
+        }
+    }
+    
+    return pals;
+}
+
+function getFrequency(stringArray, cutOff) {
+    
+    var frequencies = {}, word, frequency, i;
+    
+    for( i=0; i<stringArray.length; i++ ) {
+        word = stringArray[i];
+        frequencies[word] = frequencies[word] || 0;
+        frequencies[word]++;
+    }
+    
+    return Object.keys(frequencies).map(function(key) {
+                                        return [key, frequencies[key]];
+                                        }).sort(function(first, second) {
+                                                return second[1] - first[1];
+                                                }).slice(0,cutOff).toString()
+}
