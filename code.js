@@ -132,7 +132,7 @@ function getPalindromes(stringArray) {
 function getFrequency(stringArray, cutOff) {
     
     var frequencies = {}, word, frequency, i;
-    
+    stringArray.sort();
     for( i=0; i<stringArray.length; i++ ) {
         word = stringArray[i];
         frequencies[word] = frequencies[word] || 0;
