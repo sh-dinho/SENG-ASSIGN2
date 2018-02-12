@@ -18,7 +18,7 @@ function getStats(txt)
         maxLineLength: maxLineLength(txt),
         palindromes: getPalindromes(words),
         longestWords: longestWords(txt),
-        mostFrequentWords: getFrequency(words)
+        mostFrequentWords: getFrequency(words,10)
     };
 }
 
