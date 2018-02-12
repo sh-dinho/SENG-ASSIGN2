@@ -69,16 +69,29 @@ function maxLineLength(txt)
 function longestWords(txt) 
 {
 	var word = ' ';
+    var frequencies = {}, word, frequency, i;
 	var s = txt.split(' ');
 	for (i = 0; i < s.length; i++)
 	 {
 	 	if (s[i].length > word.length)
 	 	 {
 	 	 	word = s[i];
+             frequencies[word] = frequencies[word] || 0;
+             frequencies[word]++;
 	 	 }
 	 }
-    return word;
+    //return word;
+    return Object.keys(frequencies).map(function(key) {
+                                        return [key, frequencies[key]];
+                                        }).sort(function(first, second) {
+                                                if (second[1] == first[1]) {
+                                                return first[0].localeCompare(second[0]);
+                                                }
+                                                return second[1] - first[1];
+                                                }).slice(0,10)
 }
+
+
 
 function averageWordLength(txt)
  {
