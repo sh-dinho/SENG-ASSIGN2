@@ -76,13 +76,24 @@ function longestWords(txt)
 
 function averageWordLength(txt)
  {
- 	var sum = 0;
- 	var word = txt.split(' ');
- 	for (i = 0; i < word.length; i++) {
-	 	sum += word[i].length;
-	 }
-	 avg = (sum / word.length);
-	 return avg;
+     //var sum = 0;
+     //var regex = /' ' + ',' + '.' + '\n';
+ //	var word = txt.split(' ');
+ //	for (i = 0; i < word.length; i++) {
+//	 	sum += word[i].length;
+//	 }
+//	 avg = (sum / word.length);
+     //	 return avg;
+     var sum = 0;
+     var regex = /[\s+,.\n''\r\t]+/;
+     var words = txt.split(regex);
+    
+    for (i = 0; i < words.length; i++) {
+   		sum += words[i].length;
+	}
+	var avg = (sum / words.length);
+    return avg;
+
  }
  
  //https://www.quora.com/How-do-you-check-if-a-String-is-a-palindrome-in-JavaScript
