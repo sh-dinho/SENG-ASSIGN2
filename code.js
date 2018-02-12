@@ -99,7 +99,6 @@ function averageWordLength(txt)
  //https://www.quora.com/How-do-you-check-if-a-String-is-a-palindrome-in-JavaScript
  function palindromes(txt)
  {
-
 	if(txt == txt.split('').reverse().join('') && txt.length > 2)
 	{
 		return pal = true;
