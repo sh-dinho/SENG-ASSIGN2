@@ -129,10 +129,11 @@ function getPalindromes(stringArray) {
     return pals;
 }
 
+
 function getFrequency(stringArray, cutOff) {
     
     var frequencies = {}, word, frequency, i;
-    stringArray.sort();
+    
     for( i=0; i<stringArray.length; i++ ) {
         word = stringArray[i];
         frequencies[word] = frequencies[word] || 0;
@@ -142,6 +143,9 @@ function getFrequency(stringArray, cutOff) {
     return Object.keys(frequencies).map(function(key) {
                                         return [key, frequencies[key]];
                                         }).sort(function(first, second) {
+                                                if (second[1] == first[1]) {
+                                                return first[0].localeCompare(second[0]);
+                                                }
                                                 return second[1] - first[1];
-                                                }).slice(0,cutOff).toString()
+                                                }).slice(0,cutOff)
 }
